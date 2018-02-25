@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:nbl="http://xmlns.nbl.soa.com/common/ExceptionHandler/1.0"
+            targetNamespace="http://xmlns.nbl.soa.com/common/ExceptionHandler/1.0"
+            elementFormDefault="qualified">
+  <xsd:element name="NBLExceptionHandlerBOD" type="nbl:ExceptionReqType">
+    <xsd:annotation>
+      <xsd:documentation>Defines the interfacing data for a Noble SOA Exception.
+                         The value of the customerID field must be agreed with
+                         the service consumer and the Noble CoC and usually
+                         maintained in the service contract. This field maybe
+                         used to enforce service policies associated with a
+                         specific service consumer. The value of the id field is
+                         reserved for use by the service consumer. It can be
+                         used to represent, for instance, a unique value for
+                         each message for use in a correlation or testing
+                         scenario. The loopback field is reserved for future
+                         use. It can be used for testing purposes, if supported
+                         by the Exception Handler service, to invoke a ‘mock’
+                         Exception and/or log a pre-defined output message.
+                         errorMessageType field – The value of this field should
+                         be “INFO” for successful completion, “WARNING” for
+                         warning or “ERROR” for error. errorCode field – If
+                         errorMessageType is “INFO”, then use “0”. Else, tbd…
+                         errorMessageText – tbd errorState – tbd tbds need to be
+                         agreed upon by Noble CoC timeStamp - captures timestamp
+                         of the occurance instanceId - Component instance id for
+                         SOA/BPM for runtime tracking in EM environement - UAT
+                         or PROD node - which node of the cluster exception was
+                         application - name of business application
+                         sourceComponent - name of the composite component that
+                         generated the exception alertType - send email/ log
+                         alertTarget - email group or email address in case
+                         alertType is email</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="ExceptionReqType">
+    <xsd:sequence>
+      <xsd:element name="id" type="xsd:string"/>
+      <xsd:element name="timeStamp" type="xsd:string"/>
+      <xsd:element name="instanceId" type="xsd:string"/>
+      <xsd:element name="environment" type="xsd:string"/>
+      <xsd:element name="node" type="xsd:string"/>
+      <xsd:element name="application" type="xsd:string"/>
+      <xsd:element name="sourceComponent" type="xsd:string"/>
+      <xsd:element name="payload" type="xsd:string"/>
+      <xsd:element name="policyId" type="xsd:string"/>
+      <xsd:element name="referenceType" type="xsd:string"/>
+      <xsd:element name="referenceName" type="xsd:string"/>
+      <xsd:element name="customerId" type="xsd:string"/>
+      <xsd:element name="alertType" type="xsd:string"/>
+      <xsd:element name="alertTarget" type="xsd:string"/>
+      <xsd:element name="loopback" type="xsd:boolean" default="false"/>
+      <xsd:element name="Notification" type="nbl:ErrorInfoType" minOccurs="0"
+                   maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="ExceptionResponse" type="xsd:string"/>
+  <xsd:complexType name="ErrorInfoType">
+    <xsd:sequence>
+      <xsd:element name="errorMessageType" type="xsd:string"/>
+      <xsd:element name="errorCode" type="xsd:string"/>
+      <xsd:element name="errorMessageText" type="xsd:string"/>
+      <xsd:element name="errorState" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

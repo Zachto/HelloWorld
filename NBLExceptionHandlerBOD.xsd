@@ -31,7 +31,8 @@
                          sourceComponent - name of the composite component that
                          generated the exception alertType - send email/ log
                          alertTarget - email group or email address in case
-                         alertType is email</xsd:documentation>
+                         alertType is email
+                New comment</xsd:documentation>
     </xsd:annotation>
   </xsd:element>
   <xsd:complexType name="ExceptionReqType">
